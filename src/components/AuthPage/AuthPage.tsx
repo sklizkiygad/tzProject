@@ -2,14 +2,15 @@ import React, {ChangeEvent, useRef, useState} from 'react';
 import './AuthPage.css';
 import {authLogin} from "../../redux/auth/authActions";
 import {useAppDispatch} from "../../redux/store";
+import {useDispatch} from "react-redux";
 
 
 const AuthPage = () => {
 
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const dispatch = useAppDispatch();
 
+    const dispatch = useAppDispatch();
 
     const handleLogin = (e: ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)
 
@@ -17,9 +18,10 @@ const AuthPage = () => {
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
     const fetchAuth = (e:React.MouseEvent) => {
-        e.preventDefault();
-
-        dispatch(authLogin(login, password))}
+       e.preventDefault();
+       //dispatch(authLogin(login, password))
+       dispatch(authLogin(login, password))
+    }
 
 
     return (

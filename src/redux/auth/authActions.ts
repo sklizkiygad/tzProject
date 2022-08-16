@@ -1,19 +1,16 @@
 import {LOGOUT, SET_USER_DATA} from "./authConstants";
 import axios from "axios";
 import {IAuth} from "../../types/types";
-
-
-
-import { AnyAction } from 'redux'
+import {Action, AnyAction, Dispatch} from 'redux'
 import { RootState } from '../store'
 import { ThunkAction } from 'redux-thunk'
+import {ActionsTypes, LogoutAction, SetUserDataAction} from "./authReduser";
 
-export const setAuthUserData = (login:string, isAuth:boolean) => ({
-    type : SET_USER_DATA, payload:{login, isAuth
-    }
+export const setAuthUserData = (login:string, isAuth:boolean):SetUserDataAction => ({
+    type : SET_USER_DATA, payload:{login, isAuth}
 });
-
-export const authLogin = (login:string, password:string):ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch) =>{
+//:ThunkAction<Promise<void>, RootState, unknown, ActionsTypes>
+export const authLogin = (login:string, password:string) => async (dispatch:Dispatch<any>) => {
 
     const response = await axios.get<IAuth>('http://localhost:3000/profile');
     try{
@@ -29,4 +26,4 @@ export const authLogin = (login:string, password:string):ThunkAction<void, RootS
     }
 }
 
-export const logout= () => ({ type: LOGOUT});
+export const logout= ():LogoutAction => ({ type: LOGOUT});

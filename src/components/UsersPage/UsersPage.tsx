@@ -28,7 +28,7 @@ const UsersPage:FC = () => {
         }
     }
     const out = () => {
-        //dispatch(logout())
+        dispatch(logout())
     }
 
     return (
