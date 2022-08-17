@@ -5,6 +5,7 @@ import UserItem from "../UserItem/UserItem";
 
 interface UserListProps {
     users:IUser[];
+
 }
 
 const UserList: FC<UserListProps> = ({users}) => {
@@ -12,8 +13,7 @@ const UserList: FC<UserListProps> = ({users}) => {
     return (
         <div>
             {users.map(user=>
-                <UserItem key={user.id} user={user}/>
-
+                <UserItem  key={user.userId} user={user}/>
             )}
         </div>
     );

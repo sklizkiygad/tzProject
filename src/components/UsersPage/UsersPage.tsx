@@ -29,6 +29,16 @@ const UsersPage:FC = () => {
     }
     const out = () => {
         dispatch(logout())
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    }
+
+    const deleteMode=(id:number)=>{
+        console.log(id);
+=======
+>>>>>>> cfb84fa37c053fc5b17bf1893eedaa8db580c6df
+>>>>>>> Stashed changes
     }
 
     return (
@@ -39,7 +49,7 @@ const UsersPage:FC = () => {
                 <button onClick={out}>Выйти</button>
             </div>
 
-            <List items={users} renderItem={(user:IUser)=><UserItem user={user} key={user.id}/> }/>
+            <List items={users} renderItem={(user:IUser)=><UserItem  user={user} key={user.userId}/> }/>
         </div>
     );
 };
