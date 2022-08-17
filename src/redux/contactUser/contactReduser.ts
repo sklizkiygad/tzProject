@@ -17,10 +17,14 @@ export const contactReducer = (state = initialState, action:any) => {
                 ...state,
                 userContacts:action.payload
             }
-            case DELETE_USER_CONTACT:
+            case DELETE_USER_CONTACT:                
                 return {
                     ...state,
-                    userContacts: [...state.userContacts.filter(user=>user.userId !== action.userId)],
+                    userContacts: [...state.userContacts.filter(user=>{
+                        console.log('dsfsdfsdfsd', user.id, action);
+                        
+                        return user.id !== action.id
+                    })],
                 }
 
         default:

@@ -13,7 +13,7 @@ const UsersPage:FC = () => {
 
     const dispatch = useAppDispatch();
     const users = useAppSelector(userContactsSelector)
-   
+
     useEffect(()=>{
         dispatch(getUsersContacts())
     },[])
@@ -29,7 +29,7 @@ const UsersPage:FC = () => {
                 <button onClick={out}>Выйти</button>
             </div>
 
-            <List items={users} renderItem={(user:IUser)=><UserItem  user={user} key={user.userId}/> }/>
+            <List items={users} renderItem={(user:IUser)=><UserItem  user={user} key={user.id}/> }/>
         </div>
     );
 };

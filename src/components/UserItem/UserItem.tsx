@@ -34,12 +34,12 @@ const UserItem:FC<UserItemProps> = ({user}) => {
         setEditActive(false)
     }
 
-    const deleteMode = () => dispatch(deleteUserContactById(user.userId))
+    const deleteMode = () => dispatch(deleteUserContactById(user.id))
 
     return (
         <div className="users-list">
             <div className="users-list__item">
-                {!editActive ? <p>{user.userId}. Имя:{userName} </p> : <p>Имя:<input type="text" onChange={handleName} value={editName}/></p>}
+                {!editActive ? <p>{user.id}. Имя:{userName} </p> : <p>Имя:<input type="text" onChange={handleName} value={editName}/></p>}
                 {!editActive ? <p>Телефон: {userTelephone} </p> : <p>Телефон:<input type="text" onChange={handlePhone} value={editPhone}/></p>}
             </div>
 
