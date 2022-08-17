@@ -4,42 +4,22 @@ import axios from "axios";
 import UserItem from "../UserItem/UserItem";
 import List from "../List/List";
 import './UsersPage.css';
-import {useAppDispatch} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {logout} from "../../redux/auth/authActions";
+import { getUsersContacts } from '../../redux/contactUser/contactActions';
+import { userContactsSelector } from '../../redux/contactUser/contactSelectors';
 
 const UsersPage:FC = () => {
+
     const dispatch = useAppDispatch();
-
-    const [searchQuery,setSearchQuery]=useState<string>('');
-
-    const [users,setUsers]=useState<IUser[]>([]);
+    const users = useAppSelector(userContactsSelector)
+   
     useEffect(()=>{
-        fetchUsers();
+        dispatch(getUsersContacts())
     },[])
 
-    async function fetchUsers() {
-        try{
-            const response=await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
-            setUsers(response.data);
-        }
-        catch(e){
-            alert(e);
-
-        }
-    }
-    const out = () => {
-        dispatch(logout())
-
-
-
-    }
-
-    const deleteMode=(id:number)=>{
-        console.log(id);
-
-
-
-    }
+    
+    const out = () => dispatch(logout())
 
     return (
         <div>

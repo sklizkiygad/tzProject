@@ -1,4 +1,6 @@
 import React, {ChangeEvent, FC, useState} from 'react';
+import { deleteUserContactById } from '../../redux/contactUser/contactActions';
+import { useAppDispatch } from '../../redux/store';
 import {IUser} from "../../types/types";
 import './UserItem.css';
 
@@ -11,6 +13,8 @@ interface UserItemProps {
 
 
 const UserItem:FC<UserItemProps> = ({user}) => {
+
+    const dispatch = useAppDispatch()
 
     const [editActive, setEditActive] = useState<boolean>(false)
     const [editName, setEditName] = useState(user.name);
@@ -30,7 +34,7 @@ const UserItem:FC<UserItemProps> = ({user}) => {
         setEditActive(false)
     }
 
-
+    const deleteMode = () => dispatch(deleteUserContactById(user.userId))
 
     return (
         <div className="users-list">
@@ -42,7 +46,7 @@ const UserItem:FC<UserItemProps> = ({user}) => {
             <div className="users-list__buttons">
                 {editActive ? <button onClick={saveChanges} className="users-list__buttons__edit">Сохранить изменения</button> :
                     <button onClick={editMode} className="users-list__buttons__edit">Редактировать</button>}
-                <button  className="users-list__buttons__delete">Удалить</button>
+                <button onClick={deleteMode} className="users-list__buttons__delete">Удалить</button>
 
             </div>
         </div>
