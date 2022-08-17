@@ -15,7 +15,7 @@ const App = () => {
         <BrowserRouter>
         <div>
             <Routes>
-            {!isAuth ?
+            {isAuth ?
                 ( <Route path='/' element={<UsersPage/>}/>):
                 ( <Route path='/' element={<AuthPage/>}/>)
             }
