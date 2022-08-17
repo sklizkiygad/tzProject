@@ -1,27 +1,52 @@
-import {SET_USERS_CONTACTS} from "./contactConstants";
-import {ContactState} from "./contactReduser";
+import {ADD_USER_CONTACT, DELETE_USER_CONTACT, SEARCH_CONTACT_USER, SET_USERS_CONTACTS} from "./contactConstants";
 import {IUser} from "../../types/types";
 import axios from "axios";
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch} from "redux";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../store";
+import {LogoutAction} from "../auth/authReduser";
+import {LOGOUT} from "../auth/authConstants";
 
 
-interface UsersContactsActions {
+interface IUsersContactsActions {
     type: typeof SET_USERS_CONTACTS,
-    payload: ContactState
+    payload: IUser[]
 }
 
-export const setUsersContacts = (userId:number, phone:string, name:string):{ payload: { phone: string; name: string; userId: number }; type: string } => ({
-    type: SET_USERS_CONTACTS, payload : {userId, phone, name}
+interface IDeleteUserContactActions {
+    type: typeof DELETE_USER_CONTACT,
+    id: number
+}
+
+interface IAddUserContactActions {
+    type: typeof ADD_USER_CONTACT,
+    payload: IUser
+}
+
+interface ISearchContactActions {
+    type: typeof SEARCH_CONTACT_USER,
+    query: string
+}
+
+export const setUsersContacts = (payload:IUser[]):IUsersContactsActions => ({
+    type: SET_USERS_CONTACTS, payload
 });
 
-export const getUsersContacts = ():any => async (dispatch:Dispatch<any>) => {
+export const getUsersContacts = ():ThunkAction<Promise<void>, RootState, unknown,AnyAction> => async (dispatch) => {
 
-    const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/users');
+    const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
     try{
-        dispatch(setUsersContacts(response.data.userId, response.data.phone, response.data.name))
+        console.log(response.data);
+        
+        dispatch(setUsersContacts(response.data))
     }catch{
         console.log('Error');
 
     }
-
 }
+
+export const deleteUserContactById = (id:number):IDeleteUserContactActions => ({type: DELETE_USER_CONTACT, id})
+
+export const addUserContactById = (payload:IUser):IAddUserContactActions => ({type: ADD_USER_CONTACT, payload})
+
+export const searchContact = (query:string):ISearchContactActions => ({ type: SEARCH_CONTACT_USER,query});

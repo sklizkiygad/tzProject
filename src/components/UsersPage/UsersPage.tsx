@@ -1,55 +1,48 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import {IUser} from "../../types/types";
 import axios from "axios";
 import UserItem from "../UserItem/UserItem";
 import List from "../List/List";
 import './UsersPage.css';
-import {useAppDispatch} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {logout} from "../../redux/auth/authActions";
+import {getUsersContacts, searchContact} from '../../redux/contactUser/contactActions';
+import { userContactsSelector } from '../../redux/contactUser/contactSelectors';
+import {loginUserSelector} from "../../redux/auth/authSelectors";
+import {AddContactButton} from "../AddContactButton/AddContactButton";
+
+
 
 const UsersPage:FC = () => {
+
+    const [searchQuery,setSearchQuery]=useState('');
     const dispatch = useAppDispatch();
+    const users = useAppSelector(userContactsSelector)
 
-    const [searchQuery,setSearchQuery]=useState<string>('');
+   const handleSearchQuery=(e: ChangeEvent<HTMLInputElement>)=> setSearchQuery(e.target.value);
 
-    const [users,setUsers]=useState<IUser[]>([]);
     useEffect(()=>{
-        fetchUsers();
+        dispatch(searchContact(searchQuery))
+    },[searchQuery])
+
+    useEffect(()=>{
+        dispatch(getUsersContacts())
     },[])
 
-    async function fetchUsers() {
-        try{
-            const response=await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
-            setUsers(response.data);
-        }
-        catch(e){
-            alert(e);
-
-        }
-    }
-    const out = () => {
-        dispatch(logout())
-
-
-
-    }
-
-    const deleteMode=(id:number)=>{
-        console.log(id);
-
-
-
-    }
-
+    
+    const out = () => dispatch(logout())
+    const login= useAppSelector(loginUserSelector);
     return (
         <div>
+
             <div className="nav">
-                <h1>Добро пожаловать, {sessionStorage.getItem('userLogin')}</h1>
-                <input type="text" placeholder="Поиск"/>
+                <h1>Добро пожаловать, {login}</h1>
+                <AddContactButton/>
+                <input type="text" placeholder="Поиск" value={searchQuery} onChange={handleSearchQuery}/>
                 <button onClick={out}>Выйти</button>
             </div>
 
-            <List items={users} renderItem={(user:IUser)=><UserItem  user={user} key={user.userId}/> }/>
+            <List items={users} renderItem={(user:IUser)=><UserItem numb={0} user={user} key={user.id}/> }/>
         </div>
     );
 };
