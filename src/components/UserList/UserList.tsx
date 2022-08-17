@@ -8,13 +8,17 @@ interface UserListProps {
 
 }
 
-const UserList: FC<UserListProps> = ({users}) => {
 
+
+const UserList: FC<UserListProps> = ({users}) => {
+    console.log(users);
     return (
         <div>
+
             {users.map(user=>
-                <UserItem  key={user.userId} user={user}/>
+                <UserItem  user={user}/>
             )}
+
         </div>
     );
 };

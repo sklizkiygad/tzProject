@@ -29,16 +29,16 @@ const UsersPage:FC = () => {
     }
     const out = () => {
         dispatch(logout())
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
+
+
     }
 
     const deleteMode=(id:number)=>{
         console.log(id);
-=======
->>>>>>> cfb84fa37c053fc5b17bf1893eedaa8db580c6df
->>>>>>> Stashed changes
+
+
+
     }
 
     return (

@@ -3,13 +3,12 @@ import { createStore } from 'redux';
 import thunk from 'redux-thunk';
 import {authReducer} from "./auth/authReduser";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
+
+
 import {contactReducer} from "./contactUser/contactReduser";
-=======
->>>>>>> cfb84fa37c053fc5b17bf1893eedaa8db580c6df
->>>>>>> Stashed changes
+
+
 
 
 declare global {
