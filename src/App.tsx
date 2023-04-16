@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BrowserRouter,Route,Routes} from 'react-router-dom';
+import {HashRouter,Route,Routes} from 'react-router-dom';
 import UsersPage from "./components/UsersPage/UsersPage";
 import AuthPage from "./components/AuthPage/AuthPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
@@ -12,18 +12,19 @@ const App = () => {
    console.log(isAuth);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
         <div>
             <Routes>
-            {isAuth ?
-                ( <Route path='/' element={<UsersPage/>}/>):
-                ( <Route path='/' element={<AuthPage/>}/>)
-            }
-                <Route element={<ErrorPage/>} path='*' />
+                <Route path='/' element={<UsersPage/>}/>
+            {/*{isAuth ?*/}
+            {/*    ( <Route path='/' element={<UsersPage/>}/>):*/}
+            {/*    ( <Route path='/' element={<AuthPage/>}/>)*/}
+            {/*}*/}
+            {/*    <Route element={<ErrorPage/>} path='*' />*/}
             </Routes>
 
         </div>
-        </BrowserRouter>
+        </HashRouter>
 
     );
 };
