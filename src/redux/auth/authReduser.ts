@@ -21,7 +21,7 @@ export interface LogoutAction {
 export type ActionsTypes = SetUserDataAction | LogoutAction
 
 let initialState:AuthState = {
-    isAuth: false,
+    isAuth: true,
     login:''
 };
 
