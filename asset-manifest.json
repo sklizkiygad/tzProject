@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tzProject/static/css/main.750685f2.css",
+    "main.css": "/tzProject/static/css/main.6fd51cb8.css",
     "main.js": "/tzProject/static/js/main.9b062aa0.js",
     "index.html": "/tzProject/index.html",
-    "main.750685f2.css.map": "/tzProject/static/css/main.750685f2.css.map",
+    "main.6fd51cb8.css.map": "/tzProject/static/css/main.6fd51cb8.css.map",
     "main.9b062aa0.js.map": "/tzProject/static/js/main.9b062aa0.js.map"
   },
   "entrypoints": [
-    "static/css/main.750685f2.css",
+    "static/css/main.6fd51cb8.css",
     "static/js/main.9b062aa0.js"
   ]
 }
