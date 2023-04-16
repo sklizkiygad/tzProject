@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/reactTs/static/css/main.f14a93c3.css",
-    "main.js": "/reactTs/static/js/main.0c1a4413.js",
-    "index.html": "/reactTs/index.html",
-    "main.f14a93c3.css.map": "/reactTs/static/css/main.f14a93c3.css.map",
-    "main.0c1a4413.js.map": "/reactTs/static/js/main.0c1a4413.js.map"
+    "main.css": "/tzProject/static/css/main.f14a93c3.css",
+    "main.js": "/tzProject/static/js/main.0c1a4413.js",
+    "index.html": "/tzProject/index.html",
+    "main.f14a93c3.css.map": "/tzProject/static/css/main.f14a93c3.css.map",
+    "main.0c1a4413.js.map": "/tzProject/static/js/main.0c1a4413.js.map"
   },
   "entrypoints": [
     "static/css/main.f14a93c3.css",
